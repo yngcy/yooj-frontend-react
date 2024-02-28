@@ -1,0 +1,58 @@
+.resizebox-split-group-vertical-trigger-icon {
+  margin: 0 1px;
+  border-radius: 5px;
+  background: darkgray;
+  height: 3vh;
+  width: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.resizebox-split-group-vertical-trigger {
+  margin: 4px 0 4px 0;
+  background: rgba(30, 144, 255, 0);
+  border-radius: 5px;
+  height: 99%;
+  width: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.resizebox-split-group-vertical-trigger:hover {
+  background: dodgerblue;
+}
+
+.resizebox-split-group-vertical-trigger:hover .resizebox-split-group-vertical-trigger-icon {
+  display: none;
+}
+
+/*水平伸缩条*/
+.resizebox-split-group-horizontal-trigger-icon {
+  margin: 1px 0;
+  border-radius: 5px;
+  background: darkgray;
+  width: 3vh;
+  height: 2px;
+  display: flex;
+  justify-content: center;
+}
+
+.resizebox-split-group-horizontal-trigger {
+  margin: 0 0 0 6px;
+  background: rgba(30, 144, 255, 0);
+  border-radius: 5px;
+  width: 98%;
+  height: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.resizebox-split-group-horizontal-trigger:hover {
+  background: dodgerblue;
+}
+
+.resizebox-split-group-horizontal-trigger:hover .resizebox-split-group-horizontal-trigger-icon {
+  display: none;
+}
