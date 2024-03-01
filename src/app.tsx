@@ -7,6 +7,7 @@ import { getLoginUserUsingGET } from '@/services/yooj-user/userController';
 import '@arco-design/web-react/dist/css/arco.css';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history } from '@umijs/max';
+import 'bytemd/dist/index.css';
 import defaultSettings from '../config/defaultSettings';
 import { AvatarDropdown } from './components/RightContent/AvatarDropdown';
 import { requestConfig } from './requestConfig';

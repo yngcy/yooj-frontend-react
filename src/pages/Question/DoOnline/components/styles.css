@@ -1,0 +1,54 @@
+#vertical-tab-pane {
+  display: block;
+}
+
+#vertical-tab-pane .arco-tabs-header-nav-capsule .arco-tabs-header-title {
+  padding: 12px 2px;
+}
+
+#vertical-tab-pane .arco-tabs-header-nav-vertical .arco-tabs-header-title {
+  margin-top: 2px;
+}
+
+.ant-pro-card-body::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.ant-pro-card-body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0,0,0,0.2);
+}
+.ant-pro-card-body::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: rgba(0,0,0,0.1);
+}
+
+.ant-pro-card-extra {
+  padding: 0 4px 0 0;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  backdrop-filter: blur(8px);
+  visibility: hidden; /* 默认隐藏 */
+  opacity: 0; /* 也可以设置opacity为0来隐藏，这样可以实现淡入效果 */
+  transition: visibility 0.3s, opacity 0.3s; /* 添加过渡效果，使显示和隐藏更加平滑 */
+}
+
+.ant-pro-card:hover .ant-pro-card-extra {
+  visibility: visible; /* 悬浮时显示 */
+  opacity: 1; /* 悬浮时完全不透明 */
+}
+
+/*.ant-pro-card-extra {*/
+/*  padding: 0 4px 0 0;*/
+/*  background: rgba(255, 255, 255, 0.5);*/
+/*  border-radius: 4px;*/
+/*  position: absolute;*/
+/*  right: 0;*/
+/*  z-index: 1;*/
+/*  backdrop-filter: blur(8px);*/
+/*}*/
+
+

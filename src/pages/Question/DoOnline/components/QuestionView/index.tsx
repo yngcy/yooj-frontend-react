@@ -1,19 +1,33 @@
+import {
+  CalendarTwoTone,
+  CarryOutTwoTone,
+  FileTextTwoTone,
+  FundTwoTone,
+  LikeOutlined,
+  MessageOutlined,
+  QuestionCircleOutlined,
+  ShareAltOutlined,
+  StarOutlined,
+} from '@ant-design/icons';
 import { ProCard } from '@ant-design/pro-components';
 import { Tabs } from '@arco-design/web-react';
-import { IconExpand, IconLeft, IconRight } from '@arco-design/web-react/icon';
+import { IconExpand, IconLeft, IconRight, IconShrink } from '@arco-design/web-react/icon';
 import { TabPaneProps } from '@arco-design/web-react/lib/Tabs';
-import { Button, Space, Tooltip } from 'antd';
+import { Button, Divider, Space, Tooltip } from 'antd';
 import type { Identifier, XYCoord } from 'dnd-core';
 import React, { useRef, useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import './styles.css';
+import '../styles.css';
+import QuestionContent from './components/QuestionContent';
 
 interface Props {
-  updateLeftSize: (newSize: number | string) => void;
-  minLeftSize: string;
-  initLeftSize: number;
-  folded: boolean;
+  updateFullScreen: (value: boolean) => void;
+  updateFolded?: (value: boolean) => void;
+  folded?: boolean;
+  fullScreen: boolean;
+  data: API.QuestionVO;
+  loading: boolean;
 }
 
 const { TabPane } = Tabs;
@@ -29,11 +43,41 @@ interface WrapTabNodeProps {
 }
 
 const initTabs: (TabPaneProps & { key: React.Key })[] = [
-  { key: 'question', title: '题目' },
-  { key: 'answer', title: '题解' },
-  { key: 'comment', title: '评论' },
-  { key: 'rank', title: '排行' },
-  { key: 'submit', title: '提交记录' },
+  {
+    key: 'question',
+    title: (
+      <>
+        <FileTextTwoTone twoToneColor={'#165DFF'} /> {' 题目'}
+      </>
+    ),
+  },
+  {
+    key: 'answer',
+    title: (
+      <>
+        <CarryOutTwoTone twoToneColor={'#165DFF'} />
+        {' 题解'}
+      </>
+    ),
+  },
+  {
+    key: 'rank',
+    title: (
+      <>
+        <FundTwoTone twoToneColor={'#165DFF'} />
+        {' 排行'}
+      </>
+    ),
+  },
+  {
+    key: 'submit',
+    title: (
+      <>
+        <CalendarTwoTone twoToneColor={'#165DFF'} />
+        {' 提交记录'}
+      </>
+    ),
+  },
 ];
 
 const WrapTabNode = (props: WrapTabNodeProps) => {
@@ -96,7 +140,7 @@ const WrapTabNode = (props: WrapTabNodeProps) => {
 };
 
 const QuestionView: React.FC<Props> = (props) => {
-  const { updateLeftSize, minLeftSize, initLeftSize, folded } = props;
+  const { data, loading, updateFullScreen, updateFolded, folded, fullScreen } = props;
 
   const [tabs, setTabs] = useState(initTabs);
   const moveTabNode = (dragIndex: number, hoverIndex: number) =>
@@ -108,19 +152,27 @@ const QuestionView: React.FC<Props> = (props) => {
     });
 
   const foldLeftView = () => {
-    updateLeftSize(minLeftSize);
+    updateFolded?.(true);
   };
 
   const expendLeftView = () => {
-    updateLeftSize(initLeftSize);
+    updateFolded?.(false);
+  };
+
+  const openFullScreen = () => {
+    updateFullScreen(true);
+  };
+
+  const closeFullScreen = () => {
+    updateFullScreen(false);
   };
 
   return (
     <>
-      <div style={{ margin: '0 4px 0 0', height: '100%' }}>
+      <div style={fullScreen ? { height: '100%' } : { margin: '0 4px 0 0', height: '100%' }}>
         <ProCard
           title={
-            !folded ? (
+            !folded || fullScreen ? (
               <DndProvider backend={HTML5Backend}>
                 <Tabs style={{ borderRadius: 5 }} type={'capsule'} defaultActiveTab={'question'}>
                   {tabs.map((tabPane, index) => (
@@ -140,40 +192,109 @@ const QuestionView: React.FC<Props> = (props) => {
             )
           }
           extra={
-            !folded ? (
-              <>
-                <Space>
-                  <Tooltip title="全屏" placement={'bottom'} arrow={false}>
-                    <Button type="text" icon={<IconExpand />}></Button>
-                  </Tooltip>
-                  <Tooltip title="折叠" placement={'bottom'} arrow={false}>
-                    <Button type="text" icon={<IconLeft />} onClick={foldLeftView}></Button>
-                  </Tooltip>
-                </Space>
-              </>
+            !fullScreen && !folded ? (
+              <Space>
+                <Tooltip title="全屏" placement="bottom" arrow={false}>
+                  <Button type="text" icon={<IconExpand />} onClick={openFullScreen} />
+                </Tooltip>
+                <Tooltip title="折叠" placement="bottom" arrow={false}>
+                  <Button type="text" icon={<IconLeft />} onClick={foldLeftView} />
+                </Tooltip>
+              </Space>
             ) : (
-              <></>
+              fullScreen && (
+                <Tooltip title="还原" placement="bottom" arrow={false}>
+                  <Button type="text" icon={<IconShrink />} onClick={closeFullScreen} />
+                </Tooltip>
+              )
             )
           }
-          style={{ height: '100%', width: '100%', overflowX: 'hidden' }}
+          actions={
+            !folded || fullScreen
+              ? [
+                  <>
+                    <Button
+                      style={{
+                        margin: 4,
+                        color: 'rgb(128,128,128)',
+                        fontFamily: 'var(--content-font-family)',
+                        fontSize: 16,
+                      }}
+                      type={'text'}
+                      icon={<LikeOutlined />}
+                    >
+                      {' ' + data?.thumbNum}
+                    </Button>
+                    <Button
+                      style={{
+                        margin: 4,
+                        color: 'rgb(128,128,128)',
+                        fontSize: 16,
+                      }}
+                      type={'text'}
+                      icon={<MessageOutlined />}
+                    >
+                      {' ' + 114.5 + 'K'}
+                    </Button>
+                    <Divider type={'vertical'} />
+                    <Button
+                      style={{
+                        margin: 4,
+                        color: 'rgb(128,128,128)',
+                        fontSize: 16,
+                      }}
+                      type={'text'}
+                      icon={<StarOutlined />}
+                    ></Button>
+                    <Button
+                      style={{
+                        margin: 4,
+                        color: 'rgb(128,128,128)',
+                        fontSize: 16,
+                      }}
+                      type={'text'}
+                      icon={<ShareAltOutlined />}
+                    ></Button>
+                    <Button
+                      style={{
+                        margin: 4,
+                        color: 'rgb(128,128,128)',
+                        fontSize: 16,
+                      }}
+                      type={'text'}
+                      icon={<QuestionCircleOutlined />}
+                    ></Button>
+                  </>,
+                ]
+              : null
+          }
+          style={{
+            height: '100%',
+            width: '100%',
+            overflowX: 'hidden',
+          }}
           headStyle={{
             padding: folded ? 0 : 4,
+            fontFamily: 'var(--heading-font-family)',
           }}
           bodyStyle={
             !folded
               ? {
                   padding: 4,
                   overflowY: 'auto',
+                  fontFamily: 'var(--content-font-family)',
                 }
               : {
                   padding: '4px 0',
                   display: 'flex',
                   flexDirection: 'column',
+                  fontFamily: 'var(--content-font-family)',
                 }
           }
           bordered={true}
+          loading={loading}
         >
-          {folded ? (
+          {folded && !fullScreen ? (
             <>
               <DndProvider backend={HTML5Backend}>
                 <Tabs
@@ -199,7 +320,7 @@ const QuestionView: React.FC<Props> = (props) => {
               <div style={{ textAlign: 'center', marginTop: 'auto' }}>
                 <Space direction={'vertical'}>
                   <Tooltip title="全屏" placement={'right'} arrow={false}>
-                    <Button type="text" icon={<IconExpand />}></Button>
+                    <Button type="text" icon={<IconExpand />} onClick={openFullScreen}></Button>
                   </Tooltip>
                   <Tooltip title="展开" placement={'right'} arrow={false}>
                     <Button type="text" icon={<IconRight />} onClick={expendLeftView}></Button>
@@ -209,21 +330,7 @@ const QuestionView: React.FC<Props> = (props) => {
             </>
           ) : (
             <>
-              <Button style={{ height: 200 }} />
-              <Button style={{ height: 200 }} />
-              <Button style={{ height: 1200 }} />
-              <Button style={{ height: 1200 }} />
-              <Button style={{ height: 1200 }} />
-              <Button style={{ height: 1200 }} />
-              <Button style={{ height: 1200 }} />
-              <Button style={{ height: 1200 }} />
-              <Button style={{ height: 1200 }} />
-              <Button type={'primary'} style={{ height: 1200 }} />
-              <Button type={'primary'} style={{ height: 1200 }} />
-              <Button type={'primary'} style={{ height: 1200 }} />
-              <Button type={'primary'} style={{ height: 1200 }} />
-              <Button type={'primary'} style={{ height: 1200 }} />
-              <Button style={{ height: 1200 }} />
+              <QuestionContent question={data as API.QuestionVO} />
             </>
           )}
         </ProCard>
