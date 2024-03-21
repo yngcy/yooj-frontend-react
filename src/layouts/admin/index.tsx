@@ -1,10 +1,32 @@
+import Footer from '@/components/Footer';
+import { IconMap } from '@/utils/IconMap';
+import { useModel } from '@@/exports';
 import { GithubFilled, InfoCircleFilled, QuestionCircleFilled } from '@ant-design/icons';
-import { PageContainer, ProCard } from '@ant-design/pro-components';
-import { ProLayout } from '@ant-design/pro-layout';
-import React from 'react';
+import { MenuDataItem, ProLayout } from '@ant-design/pro-layout';
+import { Link, useLocation } from '@umijs/max';
+import React, { useEffect } from 'react';
 import { Outlet } from 'umi';
+import Settings from '../../../config/defaultSettings';
+import routes from '../../../config/routes';
 
 const AdminLayout: React.FC = () => {
+  // @ts-ignore
+  const adminRoutes = routes.find((route) => route.path === '/admin').routes.slice(1);
+  const { initialState, setInitialState } = useModel('@@initialState');
+  const { currentUser } = initialState || {};
+
+  const location = useLocation();
+
+  // 监听路由变化，强制重新渲染页面，解决点击菜单项后菜单和内容不一致的问题
+  useEffect(() => {}, [location]);
+
+  const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
+    menus.map(({ icon, children, ...item }) => ({
+      ...item,
+      icon: icon && IconMap[icon as string],
+      children: children && loopMenuItem(children),
+    }));
+
   return (
     <div
       id="test-pro-layout"
@@ -13,6 +35,8 @@ const AdminLayout: React.FC = () => {
       }}
     >
       <ProLayout
+        title={Settings.title + ' 后台'}
+        logo={Settings.logo}
         siderWidth={216}
         bgLayoutImgList={[
           {
@@ -35,8 +59,8 @@ const AdminLayout: React.FC = () => {
           },
         ]}
         avatarProps={{
-          src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
-          title: '七妮妮',
+          src: currentUser.userAvatar,
+          title: currentUser.userName,
           size: 'small',
         }}
         actionsRender={(props) => {
@@ -47,26 +71,22 @@ const AdminLayout: React.FC = () => {
             <GithubFilled key="GithubFilled" />,
           ];
         }}
-        menuItemRender={(item, dom) => (
-          <div
-            onClick={() => {
-              setPathname(item.path || '/welcome');
-            }}
-          >
-            {dom}
-          </div>
-        )}
+        onMenuHeaderClick={() => {
+          window.open('/');
+        }}
+        route={{
+          routes: adminRoutes,
+        }}
+        menuDataRender={() => loopMenuItem(adminRoutes)}
+        menuItemRender={(menuItemProps, defaultDom) => {
+          if (menuItemProps.isUrl || !menuItemProps.path) {
+            return defaultDom;
+          }
+          return <Link to={menuItemProps.path}>{defaultDom}</Link>;
+        }}
+        footerRender={() => <Footer />}
       >
-        <PageContainer>
-          <ProCard
-            style={{
-              height: '100vh',
-              minHeight: 800,
-            }}
-          >
-            <Outlet />
-          </ProCard>
-        </PageContainer>
+        <Outlet />
       </ProLayout>
     </div>
   );
