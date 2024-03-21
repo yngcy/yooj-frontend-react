@@ -3,7 +3,7 @@
 import { request } from '@umijs/max';
 
 /** errorHtml GET /api/post/error */
-export async function errorHtmlUsingGET(options?: { [key: string]: any }) {
+export async function errorHtmlUsingGet(options?: { [key: string]: any }) {
   return request<API.ModelAndView>('/api/post/error', {
     method: 'GET',
     ...(options || {}),
@@ -11,7 +11,7 @@ export async function errorHtmlUsingGET(options?: { [key: string]: any }) {
 }
 
 /** errorHtml PUT /api/post/error */
-export async function errorHtmlUsingPUT(options?: { [key: string]: any }) {
+export async function errorHtmlUsingPut(options?: { [key: string]: any }) {
   return request<API.ModelAndView>('/api/post/error', {
     method: 'PUT',
     ...(options || {}),
@@ -19,7 +19,7 @@ export async function errorHtmlUsingPUT(options?: { [key: string]: any }) {
 }
 
 /** errorHtml POST /api/post/error */
-export async function errorHtmlUsingPOST(options?: { [key: string]: any }) {
+export async function errorHtmlUsingPost(options?: { [key: string]: any }) {
   return request<API.ModelAndView>('/api/post/error', {
     method: 'POST',
     ...(options || {}),
@@ -27,7 +27,7 @@ export async function errorHtmlUsingPOST(options?: { [key: string]: any }) {
 }
 
 /** errorHtml DELETE /api/post/error */
-export async function errorHtmlUsingDELETE(options?: { [key: string]: any }) {
+export async function errorHtmlUsingDelete(options?: { [key: string]: any }) {
   return request<API.ModelAndView>('/api/post/error', {
     method: 'DELETE',
     ...(options || {}),
@@ -35,7 +35,7 @@ export async function errorHtmlUsingDELETE(options?: { [key: string]: any }) {
 }
 
 /** errorHtml PATCH /api/post/error */
-export async function errorHtmlUsingPATCH(options?: { [key: string]: any }) {
+export async function errorHtmlUsingPatch(options?: { [key: string]: any }) {
   return request<API.ModelAndView>('/api/post/error', {
     method: 'PATCH',
     ...(options || {}),

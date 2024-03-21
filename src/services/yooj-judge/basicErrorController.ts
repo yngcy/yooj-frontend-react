@@ -3,7 +3,7 @@
 import { request } from '@umijs/max';
 
 /** error GET /api/judge/error */
-export async function errorUsingGET(options?: { [key: string]: any }) {
+export async function errorUsingGet(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/judge/error', {
     method: 'GET',
     ...(options || {}),
@@ -11,7 +11,7 @@ export async function errorUsingGET(options?: { [key: string]: any }) {
 }
 
 /** error PUT /api/judge/error */
-export async function errorUsingPUT(options?: { [key: string]: any }) {
+export async function errorUsingPut(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/judge/error', {
     method: 'PUT',
     ...(options || {}),
@@ -19,7 +19,7 @@ export async function errorUsingPUT(options?: { [key: string]: any }) {
 }
 
 /** error POST /api/judge/error */
-export async function errorUsingPOST(options?: { [key: string]: any }) {
+export async function errorUsingPost(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/judge/error', {
     method: 'POST',
     ...(options || {}),
@@ -27,7 +27,7 @@ export async function errorUsingPOST(options?: { [key: string]: any }) {
 }
 
 /** error DELETE /api/judge/error */
-export async function errorUsingDELETE(options?: { [key: string]: any }) {
+export async function errorUsingDelete(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/judge/error', {
     method: 'DELETE',
     ...(options || {}),
@@ -35,7 +35,7 @@ export async function errorUsingDELETE(options?: { [key: string]: any }) {
 }
 
 /** error PATCH /api/judge/error */
-export async function errorUsingPATCH(options?: { [key: string]: any }) {
+export async function errorUsingPatch(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/judge/error', {
     method: 'PATCH',
     ...(options || {}),
