@@ -1,6 +1,6 @@
 import JudgeInfo from '@/pages/Submission/components/JudgeInfo';
 import SubmitStatus from '@/pages/Submission/components/SubmitStatus';
-import { listQuestionSubmitByPageUsingPOST } from '@/services/yooj-question/questionController';
+import { listQuestionSubmitByPageUsingPost } from '@/services/yooj-question/questionController';
 import { SettingOutlined } from '@ant-design/icons';
 import {
   LightFilter,
@@ -57,7 +57,7 @@ const SubmissionPage: React.FC = () => {
   const doSearch = async () => {
     setLoading(true);
     try {
-      const res = await listQuestionSubmitByPageUsingPOST(searchParams);
+      const res = await listQuestionSubmitByPageUsingPost(searchParams);
       setData(res.data?.records ?? []);
       setTotal(Number(res.data?.total) ?? 0);
     } catch (error: any) {
@@ -130,7 +130,7 @@ const SubmissionPage: React.FC = () => {
       },
       render: (questionVO) => (
         <Tooltip placement="topLeft" title={questionVO.title}>
-          <a>{questionVO.title}</a>
+          <a href={'/question/' + questionVO.id}>{questionVO.title}</a>
         </Tooltip>
       ),
     },

@@ -1,6 +1,6 @@
 import PunchCalendar from '@/pages/Question/components/PunchCalendar';
 import QuestionSubmitStatusChart from '@/pages/Question/components/QuestionSubmitStatusChart';
-import { listQuestionVOByPageUsingPOST } from '@/services/yooj-question/questionController';
+import { listQuestionVoByPageUsingPost } from '@/services/yooj-question/questionController';
 import { SearchOutlined, SettingOutlined } from '@ant-design/icons';
 import {
   LightFilter,
@@ -67,7 +67,7 @@ const QuestionPage: React.FC = () => {
   const doSearch = async () => {
     setLoading(true);
     try {
-      const res = await listQuestionVOByPageUsingPOST(searchParams);
+      const res = await listQuestionVoByPageUsingPost(searchParams);
       setData(res.data?.records ?? []);
       setTotal(Number(res.data?.total) ?? 0);
     } catch (error: any) {
@@ -111,9 +111,9 @@ const QuestionPage: React.FC = () => {
       ellipsis: {
         showTitle: false,
       },
-      render: (text) => (
-        <Tooltip placement="topLeft" title={text}>
-          <a>{text}</a>
+      render: (_, record) => (
+        <Tooltip placement="topLeft" title={record.title}>
+          <a href={'/question/' + record.id}>{record.title}</a>
         </Tooltip>
       ),
     },

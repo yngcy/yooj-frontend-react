@@ -1,4 +1,4 @@
-import { userRegisterUsingPOST } from '@/services/yooj-user/userController';
+import { userRegisterUsingPost } from '@/services/yooj-user/userController';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
@@ -25,7 +25,7 @@ const Register: React.FC = () => {
   const handleSubmit = async (values: API.UserRegisterRequest) => {
     try {
       // 注册
-      const res = await userRegisterUsingPOST({
+      const res = await userRegisterUsingPost({
         ...values,
       });
 
@@ -61,8 +61,8 @@ const Register: React.FC = () => {
               maxWidth: '75vw',
             }}
             logo={<img alt="logo" style={{ height: '100%' }} src="/logo.png" />}
-            title="源码林-代码生成器平台"
-            subTitle={'代码生成器在线制作，帮助开发者提高开发效率'}
+            title="阳曦 OJ"
+            subTitle={'更高效的算法刷题平台'}
             initialValues={{
               autoLogin: true,
             }}
