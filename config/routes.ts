@@ -1,11 +1,11 @@
 export default [
   { path: '/user', layout: false, routes: [{ path: '/user/login', component: './User/Login' }] },
+  { path: '/account/center', component: './Account/Center' },
   { path: '/home', icon: 'HomeOutlined', component: './Home', name: '主页' },
   { path: '/question', icon: 'BarsOutlined', component: './Question', name: '题库' },
   {
     path: '/question/:id',
     component: './Question/DoOnline',
-    name: '在线做题',
     layout: false,
     props: true,
   },
@@ -173,8 +173,115 @@ export default [
     access: 'canAdmin',
     component: '@/layouts/admin',
     routes: [
-      { path: '/admin', redirect: '/admin/user' },
-      { icon: 'table', path: '/admin/user', component: './Admin/User', name: '用户管理' },
+      { path: '/admin', redirect: '/admin/dashboard' },
+      {
+        path: '/admin/dashboard',
+        component: './admin/DashBoard',
+        icon: 'DashboardOutlined',
+        name: '仪表盘',
+      },
+      {
+        path: '/admin/system',
+        component: './admin/System',
+        icon: 'ClusterOutlined',
+        name: '系统管理',
+      },
+      {
+        path: '/admin/access',
+        name: '访问控制',
+        icon: 'TeamOutlined',
+        routes: [
+          { path: '/admin/access', redirect: '/admin/access/user' },
+          {
+            path: '/admin/access/user',
+            component: './admin/access/User',
+            name: '用户管理',
+          },
+          { path: '/admin/access/role', component: './admin/access/Role', name: '角色管理' },
+          { path: '/admin/access/auth', component: './admin/access/Auth', name: '权限管理' },
+        ],
+      },
+      {
+        path: '/admin/tags',
+        icon: 'TagsOutlined',
+        component: './admin/Tags',
+        name: '标签管理',
+      },
+      {
+        path: '/admin/information',
+        name: '信息推送',
+        icon: 'AlertOutlined',
+        routes: [
+          { path: '/admin/information', redirect: '/admin/information/announcement' },
+          {
+            path: '/admin/information/announcement',
+            component: './admin/information/Announcement',
+            name: '公告管理',
+          },
+          {
+            path: '/admin/information/notice',
+            component: './admin/information/Notice',
+            name: '通知管理',
+          },
+        ],
+      },
+      {
+        path: '/admin/question',
+        name: '题目管理',
+        icon: 'InboxOutlined',
+        routes: [
+          { path: '/admin/question', redirect: '/admin/question/list' },
+          {
+            path: '/admin/question/list',
+            component: './admin/question/List',
+            name: '题目列表',
+            hideInMenu: true,
+          },
+          {
+            path: '/admin/question/create',
+            component: './admin/question/Create',
+            name: '创建题目',
+            hideInMenu: true,
+          },
+          {
+            path: '/admin/question/update/:id',
+            component: './admin/question/Create',
+            name: '更新题目',
+            hideInMenu: true,
+          },
+        ],
+      },
+      {
+        path: '/admin/contest',
+        name: '比赛管理',
+        icon: 'TrophyOutlined',
+        routes: [
+          { path: '/admin/contest', redirect: '/admin/contest/list' },
+          {
+            path: '/admin/contest/prepare',
+            component: './admin/contest/Prepare',
+            name: '比赛筹备',
+          },
+          { path: '/admin/contest/list', component: './admin/contest/List', name: '比赛列表' },
+          {
+            path: '/admin/contest/create',
+            component: './admin/contest/Create',
+            name: '创建比赛',
+            hideInMenu: true,
+          },
+        ],
+      },
+      {
+        path: '/admin/post',
+        name: '帖子管理',
+        icon: 'CoffeeOutlined',
+        routes: [
+          { path: '/admin/post', redirect: '/admin/post/list' },
+          { path: '/admin/post/list', component: './admin/post/List', name: '帖子列表' },
+          { path: '/admin/post/bench', component: './admin/post/Bench', name: '帖子工作台' },
+          { path: '/admin/post/config', component: './admin/post/Config', name: '帖子配置' },
+        ],
+      },
     ],
   },
   { path: '/', redirect: '/home' },
