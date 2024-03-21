@@ -51,11 +51,6 @@ declare namespace API {
     id?: number;
   };
 
-  type getByIdUsingGETParams = {
-    /** userId */
-    userId: number;
-  };
-
   type getCodeUsingPOSTParams = {
     /** userAccount */
     userAccount: string;
@@ -74,11 +69,6 @@ declare namespace API {
   type hasUserByUserAccountUsingPOSTParams = {
     /** userAccount */
     userAccount: string;
-  };
-
-  type listByIdsUsingGETParams = {
-    /** idList */
-    idList: number[];
   };
 
   type LoginUserVO = {

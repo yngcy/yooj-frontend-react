@@ -17,6 +17,12 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponsePageQuestionSimple_ = {
+    code?: number;
+    data?: PageQuestionSimple_;
+    message?: string;
+  };
+
   type BaseResponsePageQuestionSubmitVO_ = {
     code?: number;
     data?: PageQuestionSubmitVO_;
@@ -57,19 +63,9 @@ declare namespace API {
     id?: number;
   };
 
-  type getQuestionByIdUsingGET1Params = {
-    /** questionId */
-    questionId: number;
-  };
-
   type getQuestionByIdUsingGETParams = {
     /** id */
     id?: number;
-  };
-
-  type getQuestionSubmitByIdUsingGETParams = {
-    /** questionSubmitId */
-    questionSubmitId: number;
   };
 
   type getQuestionSubmitVOByIdUsingGETParams = {
@@ -196,6 +192,19 @@ declare namespace API {
     total?: number;
   };
 
+  type PageQuestionSimple_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: QuestionSimple[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
   type PageQuestionSubmitVO_ = {
     countId?: string;
     current?: number;
@@ -273,19 +282,10 @@ declare namespace API {
     userId?: number;
   };
 
-  type QuestionSubmit = {
-    code?: string;
-    codeLength?: number;
-    createTime?: string;
+  type QuestionSimple = {
+    difficulty?: number;
     id?: number;
-    isDelete?: number;
-    judgeInfo?: string;
-    judger?: string;
-    language?: string;
-    questionId?: number;
-    status?: number;
-    updateTime?: string;
-    userId?: number;
+    title?: string;
   };
 
   type QuestionSubmitAddRequest = {

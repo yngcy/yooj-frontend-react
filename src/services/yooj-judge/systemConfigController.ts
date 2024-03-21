@@ -3,7 +3,7 @@
 import { request } from '@umijs/max';
 
 /** getSystemConfig GET /api/judge/get-sys-config */
-export async function getSystemConfigUsingGET(options?: { [key: string]: any }) {
+export async function getSystemConfigUsingGet(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/judge/get-sys-config', {
     method: 'GET',
     ...(options || {}),
@@ -11,7 +11,7 @@ export async function getSystemConfigUsingGET(options?: { [key: string]: any }) 
 }
 
 /** getSystemConfig PUT /api/judge/get-sys-config */
-export async function getSystemConfigUsingPUT(options?: { [key: string]: any }) {
+export async function getSystemConfigUsingPut(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/judge/get-sys-config', {
     method: 'PUT',
     ...(options || {}),
@@ -19,7 +19,7 @@ export async function getSystemConfigUsingPUT(options?: { [key: string]: any }) 
 }
 
 /** getSystemConfig POST /api/judge/get-sys-config */
-export async function getSystemConfigUsingPOST(options?: { [key: string]: any }) {
+export async function getSystemConfigUsingPost(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/judge/get-sys-config', {
     method: 'POST',
     ...(options || {}),
@@ -27,7 +27,7 @@ export async function getSystemConfigUsingPOST(options?: { [key: string]: any })
 }
 
 /** getSystemConfig DELETE /api/judge/get-sys-config */
-export async function getSystemConfigUsingDELETE(options?: { [key: string]: any }) {
+export async function getSystemConfigUsingDelete(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/judge/get-sys-config', {
     method: 'DELETE',
     ...(options || {}),
@@ -35,7 +35,7 @@ export async function getSystemConfigUsingDELETE(options?: { [key: string]: any 
 }
 
 /** getSystemConfig PATCH /api/judge/get-sys-config */
-export async function getSystemConfigUsingPATCH(options?: { [key: string]: any }) {
+export async function getSystemConfigUsingPatch(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/judge/get-sys-config', {
     method: 'PATCH',
     ...(options || {}),

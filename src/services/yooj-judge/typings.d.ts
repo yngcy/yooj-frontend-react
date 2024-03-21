@@ -5,11 +5,6 @@ declare namespace API {
     message?: string;
   };
 
-  type doJudgeUsingPOSTParams = {
-    /** questionSubmitId */
-    questionSubmitId?: number;
-  };
-
   type HashMapStringObject_ = true;
 
   type ModelAndView = {
@@ -88,21 +83,6 @@ declare namespace API {
       | 'NETWORK_AUTHENTICATION_REQUIRED';
     view?: View;
     viewName?: string;
-  };
-
-  type QuestionSubmit = {
-    code?: string;
-    codeLength?: number;
-    createTime?: string;
-    id?: number;
-    isDelete?: number;
-    judgeInfo?: string;
-    judger?: string;
-    language?: string;
-    questionId?: number;
-    status?: number;
-    updateTime?: string;
-    userId?: number;
   };
 
   type View = {
