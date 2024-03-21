@@ -3,11 +3,10 @@ import Footer from '@/components/Footer';
 import MarketDropDown from '@/components/MarketDropDown';
 import MessageDropDown from '@/components/MessageDropDown';
 import SearchInput from '@/components/SearchInput';
-import { getLoginUserUsingGET } from '@/services/yooj-user/userController';
+import { getLoginUserUsingGet } from '@/services/yooj-user/userController';
 import '@arco-design/web-react/dist/css/arco.css';
 import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history } from '@umijs/max';
-import 'bytemd/dist/index.css';
 import defaultSettings from '../config/defaultSettings';
 import { AvatarDropdown } from './components/RightContent/AvatarDropdown';
 import { requestConfig } from './requestConfig';
@@ -25,7 +24,7 @@ export async function getInitialState(): Promise<InitialState> {
   const { location } = history;
   if (location.pathname !== loginPath) {
     try {
-      const res = await getLoginUserUsingGET();
+      const res = await getLoginUserUsingGet();
       initialState.currentUser = res.data;
     } catch (error: any) {
       // 如果未登录
