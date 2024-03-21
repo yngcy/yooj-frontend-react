@@ -3,7 +3,7 @@
 import { request } from '@umijs/max';
 
 /** getVersion GET /api/judge/version */
-export async function getVersionUsingGET(options?: { [key: string]: any }) {
+export async function getVersionUsingGet(options?: { [key: string]: any }) {
   return request<API.BaseResponseHashMapStringObject_>('/api/judge/version', {
     method: 'GET',
     ...(options || {}),
@@ -11,7 +11,7 @@ export async function getVersionUsingGET(options?: { [key: string]: any }) {
 }
 
 /** getVersion PUT /api/judge/version */
-export async function getVersionUsingPUT(options?: { [key: string]: any }) {
+export async function getVersionUsingPut(options?: { [key: string]: any }) {
   return request<API.BaseResponseHashMapStringObject_>('/api/judge/version', {
     method: 'PUT',
     ...(options || {}),
@@ -19,7 +19,7 @@ export async function getVersionUsingPUT(options?: { [key: string]: any }) {
 }
 
 /** getVersion POST /api/judge/version */
-export async function getVersionUsingPOST(options?: { [key: string]: any }) {
+export async function getVersionUsingPost(options?: { [key: string]: any }) {
   return request<API.BaseResponseHashMapStringObject_>('/api/judge/version', {
     method: 'POST',
     ...(options || {}),
@@ -27,7 +27,7 @@ export async function getVersionUsingPOST(options?: { [key: string]: any }) {
 }
 
 /** getVersion DELETE /api/judge/version */
-export async function getVersionUsingDELETE(options?: { [key: string]: any }) {
+export async function getVersionUsingDelete(options?: { [key: string]: any }) {
   return request<API.BaseResponseHashMapStringObject_>('/api/judge/version', {
     method: 'DELETE',
     ...(options || {}),
@@ -35,7 +35,7 @@ export async function getVersionUsingDELETE(options?: { [key: string]: any }) {
 }
 
 /** getVersion PATCH /api/judge/version */
-export async function getVersionUsingPATCH(options?: { [key: string]: any }) {
+export async function getVersionUsingPatch(options?: { [key: string]: any }) {
   return request<API.BaseResponseHashMapStringObject_>('/api/judge/version', {
     method: 'PATCH',
     ...(options || {}),
