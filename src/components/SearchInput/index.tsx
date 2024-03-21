@@ -1,6 +1,6 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Input, Popover } from 'antd';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from './MyPopover.module.css';
 
 const SearchInput: React.FC = () => {
