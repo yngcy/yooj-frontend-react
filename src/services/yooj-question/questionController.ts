@@ -3,7 +3,7 @@
 import { request } from '@umijs/max';
 
 /** addQuestion POST /api/question/add */
-export async function addQuestionUsingPOST(
+export async function addQuestionUsingPost(
   body: API.QuestionAddRequest,
   options?: { [key: string]: any },
 ) {
@@ -18,7 +18,7 @@ export async function addQuestionUsingPOST(
 }
 
 /** deleteQuestion POST /api/question/delete */
-export async function deleteQuestionUsingPOST(
+export async function deleteQuestionUsingPost(
   body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
@@ -33,7 +33,7 @@ export async function deleteQuestionUsingPOST(
 }
 
 /** editQuestion POST /api/question/edit */
-export async function editQuestionUsingPOST(
+export async function editQuestionUsingPost(
   body: API.QuestionEditRequest,
   options?: { [key: string]: any },
 ) {
@@ -48,7 +48,7 @@ export async function editQuestionUsingPOST(
 }
 
 /** getQuestionById GET /api/question/get */
-export async function getQuestionByIdUsingGET(
+export async function getQuestionByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getQuestionByIdUsingGETParams,
   options?: { [key: string]: any },
@@ -63,7 +63,7 @@ export async function getQuestionByIdUsingGET(
 }
 
 /** getQuestionVOById GET /api/question/get/vo */
-export async function getQuestionVOByIdUsingGET(
+export async function getQuestionVoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getQuestionVOByIdUsingGETParams,
   options?: { [key: string]: any },
@@ -78,7 +78,7 @@ export async function getQuestionVOByIdUsingGET(
 }
 
 /** getHealth GET /api/question/health */
-export async function getHealthUsingGET(options?: { [key: string]: any }) {
+export async function getHealthUsingGet(options?: { [key: string]: any }) {
   return request<API.BaseResponseString_>('/api/question/health', {
     method: 'GET',
     ...(options || {}),
@@ -86,7 +86,7 @@ export async function getHealthUsingGET(options?: { [key: string]: any }) {
 }
 
 /** listQuestionByPage POST /api/question/list/page */
-export async function listQuestionByPageUsingPOST(
+export async function listQuestionByPageUsingPost(
   body: API.QuestionQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -100,8 +100,23 @@ export async function listQuestionByPageUsingPOST(
   });
 }
 
+/** listQuestionSimpleByPage POST /api/question/list/page/simple */
+export async function listQuestionSimpleByPageUsingPost(
+  body: API.QuestionQueryRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponsePageQuestionSimple_>('/api/question/list/page/simple', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** listQuestionVOByPage POST /api/question/list/page/vo */
-export async function listQuestionVOByPageUsingPOST(
+export async function listQuestionVoByPageUsingPost(
   body: API.QuestionQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -116,7 +131,7 @@ export async function listQuestionVOByPageUsingPOST(
 }
 
 /** listMyQuestionVOByPage POST /api/question/my/list/page/vo */
-export async function listMyQuestionVOByPageUsingPOST(
+export async function listMyQuestionVoByPageUsingPost(
   body: API.QuestionQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -131,7 +146,7 @@ export async function listMyQuestionVOByPageUsingPOST(
 }
 
 /** doQuestionSubmit POST /api/question/question_submit/do */
-export async function doQuestionSubmitUsingPOST(
+export async function doQuestionSubmitUsingPost(
   body: API.QuestionSubmitAddRequest,
   options?: { [key: string]: any },
 ) {
@@ -146,7 +161,7 @@ export async function doQuestionSubmitUsingPOST(
 }
 
 /** getQuestionSubmitVOById GET /api/question/question_submit/get/vo */
-export async function getQuestionSubmitVOByIdUsingGET(
+export async function getQuestionSubmitVoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getQuestionSubmitVOByIdUsingGETParams,
   options?: { [key: string]: any },
@@ -161,7 +176,7 @@ export async function getQuestionSubmitVOByIdUsingGET(
 }
 
 /** listQuestionSubmitByPage POST /api/question/question_submit/list/page */
-export async function listQuestionSubmitByPageUsingPOST(
+export async function listQuestionSubmitByPageUsingPost(
   body: API.QuestionSubmitQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -176,7 +191,7 @@ export async function listQuestionSubmitByPageUsingPOST(
 }
 
 /** updateQuestion POST /api/question/update */
-export async function updateQuestionUsingPOST(
+export async function updateQuestionUsingPost(
   body: API.QuestionUpdateRequest,
   options?: { [key: string]: any },
 ) {

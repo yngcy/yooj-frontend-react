@@ -3,7 +3,7 @@
 import { request } from '@umijs/max';
 
 /** addPost POST /api/post/add */
-export async function addPostUsingPOST(body: API.PostAddRequest, options?: { [key: string]: any }) {
+export async function addPostUsingPost(body: API.PostAddRequest, options?: { [key: string]: any }) {
   return request<API.BaseResponseLong_>('/api/post/add', {
     method: 'POST',
     headers: {
@@ -15,7 +15,7 @@ export async function addPostUsingPOST(body: API.PostAddRequest, options?: { [ke
 }
 
 /** listCategoryPostVOByPage POST /api/post/category/list/page */
-export async function listCategoryPostVOByPageUsingPOST(
+export async function listCategoryPostVoByPageUsingPost(
   body: API.PostQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -30,7 +30,7 @@ export async function listCategoryPostVOByPageUsingPOST(
 }
 
 /** deletePost POST /api/post/delete */
-export async function deletePostUsingPOST(
+export async function deletePostUsingPost(
   body: API.DeleteRequest,
   options?: { [key: string]: any },
 ) {
@@ -45,7 +45,7 @@ export async function deletePostUsingPOST(
 }
 
 /** editPost POST /api/post/edit */
-export async function editPostUsingPOST(
+export async function editPostUsingPost(
   body: API.PostEditRequest,
   options?: { [key: string]: any },
 ) {
@@ -60,7 +60,7 @@ export async function editPostUsingPOST(
 }
 
 /** doPostFavour POST /api/post/favour */
-export async function doPostFavourUsingPOST(
+export async function doPostFavourUsingPost(
   body: API.PostFavourAddRequest,
   options?: { [key: string]: any },
 ) {
@@ -75,7 +75,7 @@ export async function doPostFavourUsingPOST(
 }
 
 /** listFavourPostByPage POST /api/post/favour/list/page */
-export async function listFavourPostByPageUsingPOST(
+export async function listFavourPostByPageUsingPost(
   body: API.PostFavourQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -90,7 +90,7 @@ export async function listFavourPostByPageUsingPOST(
 }
 
 /** listMyFavourPostByPage POST /api/post/favour/my/list/page */
-export async function listMyFavourPostByPageUsingPOST(
+export async function listMyFavourPostByPageUsingPost(
   body: API.PostQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -105,7 +105,7 @@ export async function listMyFavourPostByPageUsingPOST(
 }
 
 /** getPostVOById GET /api/post/get/vo */
-export async function getPostVOByIdUsingGET(
+export async function getPostVoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.getPostVOByIdUsingGETParams,
   options?: { [key: string]: any },
@@ -120,7 +120,7 @@ export async function getPostVOByIdUsingGET(
 }
 
 /** listPostByPage POST /api/post/list/page */
-export async function listPostByPageUsingPOST(
+export async function listPostByPageUsingPost(
   body: API.PostQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -135,7 +135,7 @@ export async function listPostByPageUsingPOST(
 }
 
 /** listPostVOByPage POST /api/post/list/page/vo */
-export async function listPostVOByPageUsingPOST(
+export async function listPostVoByPageUsingPost(
   body: API.PostQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -150,7 +150,7 @@ export async function listPostVOByPageUsingPOST(
 }
 
 /** listMyPostVOByPage POST /api/post/my/list/page/vo */
-export async function listMyPostVOByPageUsingPOST(
+export async function listMyPostVoByPageUsingPost(
   body: API.PostQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -165,7 +165,7 @@ export async function listMyPostVOByPageUsingPOST(
 }
 
 /** searchPostVOByPage POST /api/post/search/page/vo */
-export async function searchPostVOByPageUsingPOST(
+export async function searchPostVoByPageUsingPost(
   body: API.PostQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -180,7 +180,7 @@ export async function searchPostVOByPageUsingPOST(
 }
 
 /** doThumb POST /api/post/thumb */
-export async function doThumbUsingPOST(
+export async function doThumbUsingPost(
   body: API.PostThumbAddRequest,
   options?: { [key: string]: any },
 ) {
@@ -195,7 +195,7 @@ export async function doThumbUsingPOST(
 }
 
 /** listMyThumbPostByPage POST /api/post/thumb/my/list/page */
-export async function listMyThumbPostByPageUsingPOST(
+export async function listMyThumbPostByPageUsingPost(
   body: API.PostQueryRequest,
   options?: { [key: string]: any },
 ) {
@@ -210,7 +210,7 @@ export async function listMyThumbPostByPageUsingPOST(
 }
 
 /** updatePost POST /api/post/update */
-export async function updatePostUsingPOST(
+export async function updatePostUsingPost(
   body: API.PostUpdateRequest,
   options?: { [key: string]: any },
 ) {
