@@ -1,3 +1,4 @@
+import { QuestionData } from '@/pages/Question/DoOnline';
 import {
   CalendarTwoTone,
   CarryOutTwoTone,
@@ -15,7 +16,7 @@ import { IconExpand, IconLeft, IconRight, IconShrink } from '@arco-design/web-re
 import { TabPaneProps } from '@arco-design/web-react/lib/Tabs';
 import { Button, Divider, Space, Tooltip } from 'antd';
 import type { Identifier, XYCoord } from 'dnd-core';
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import '../styles.css';
@@ -26,8 +27,6 @@ interface Props {
   updateFolded?: (value: boolean) => void;
   folded?: boolean;
   fullScreen: boolean;
-  data: API.QuestionVO;
-  loading: boolean;
 }
 
 const { TabPane } = Tabs;
@@ -140,9 +139,13 @@ const WrapTabNode = (props: WrapTabNodeProps) => {
 };
 
 const QuestionView: React.FC<Props> = (props) => {
-  const { data, loading, updateFullScreen, updateFolded, folded, fullScreen } = props;
+  const { data, loading } = useContext(QuestionData);
+  const { updateFullScreen, updateFolded, folded, fullScreen } = props;
 
   const [tabs, setTabs] = useState(initTabs);
+
+  const [activeTab, setActiveTab] = useState(initTabs[0].key);
+
   const moveTabNode = (dragIndex: number, hoverIndex: number) =>
     setTabs((prevTabs) => {
       const newCards = [...prevTabs];
@@ -174,7 +177,14 @@ const QuestionView: React.FC<Props> = (props) => {
           title={
             !folded || fullScreen ? (
               <DndProvider backend={HTML5Backend}>
-                <Tabs style={{ borderRadius: 5 }} type={'capsule'} defaultActiveTab={'question'}>
+                <Tabs
+                  style={{ borderRadius: 5 }}
+                  type={'capsule'}
+                  defaultActiveTab={activeTab as string}
+                  onClickTab={(key) => {
+                    setActiveTab(key);
+                  }}
+                >
                   {tabs.map((tabPane, index) => (
                     <TabPane
                       key={tabPane.key}
@@ -271,7 +281,7 @@ const QuestionView: React.FC<Props> = (props) => {
           style={{
             height: '100%',
             width: '100%',
-            overflowX: 'hidden',
+            overflow: 'hidden',
           }}
           headStyle={{
             padding: folded ? 0 : 4,
@@ -302,7 +312,10 @@ const QuestionView: React.FC<Props> = (props) => {
                   tabPosition={'left'}
                   style={{ borderRadius: 5, width: '100%', margin: '0 auto' }}
                   type={'capsule'}
-                  defaultActiveTab={'question'}
+                  defaultActiveTab={activeTab as string}
+                  onClickTab={(key) => {
+                    setActiveTab(key);
+                  }}
                 >
                   {tabs.map((tabPane, index) => (
                     <TabPane

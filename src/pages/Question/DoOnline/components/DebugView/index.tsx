@@ -1,9 +1,11 @@
 import { ProCard } from '@ant-design/pro-components';
 import { Tabs } from '@arco-design/web-react';
 import TabPane from '@arco-design/web-react/es/Tabs/tab-pane';
-import { IconDown, IconExpand, IconShrink, IconUp } from '@arco-design/web-react/icon';
-import { Button, Space, Tooltip } from 'antd';
-import React from 'react';
+import { IconCode, IconDown, IconExpand, IconShrink, IconUp } from '@arco-design/web-react/icon';
+import { Button, Divider, Space, Tooltip } from 'antd';
+import React, { useState } from 'react';
+
+import DebugContent from '@/pages/Question/DoOnline/components/DebugView/components/DebugContent';
 import '../styles.css';
 
 interface Props {
@@ -15,6 +17,7 @@ interface Props {
 
 const DebugView: React.FC<Props> = (props) => {
   const { updateFolded, updateFullScreen, folded, fullScreen } = props;
+  const [value, setValue] = useState('');
 
   const openFullScreen = () => {
     updateFullScreen(true);
@@ -38,8 +41,8 @@ const DebugView: React.FC<Props> = (props) => {
             <Tabs style={{ borderRadius: 5 }} type={'capsule'}>
               <TabPane key="1" title="测试用例" />
               <TabPane key="2" title="测试结果" />
-              <TabPane key="3" title="Tab 3" />
-              <TabPane key="4" title="Tab 4" />
+              <TabPane key="3" title="提交结果" />
+              <TabPane key="4" title="调试区" />
             </Tabs>
           }
           extra={
@@ -66,12 +69,31 @@ const DebugView: React.FC<Props> = (props) => {
               </Tooltip>
             )
           }
+          actions={[
+            <>
+              <Tooltip placement={'left'} title={'在代码中编辑数据'} arrow={false}>
+                <Button
+                  style={{
+                    margin: 4,
+                    color: 'rgb(128,128,128)',
+                    fontFamily: 'var(--content-font-family)',
+                    fontSize: 16,
+                  }}
+                  type="text"
+                  icon={<IconCode />}
+                >
+                  Source
+                </Button>
+              </Tooltip>
+              <Divider type={'vertical'} />
+            </>,
+          ]}
           style={{ height: '100%', width: '100%', overflow: 'hidden' }}
           headStyle={{ padding: 4 }}
           bodyStyle={{ padding: 4, overflowY: 'auto' }}
           bordered={true}
         >
-          测试
+          <DebugContent />
         </ProCard>
       </div>
     </>

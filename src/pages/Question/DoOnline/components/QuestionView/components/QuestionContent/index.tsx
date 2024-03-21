@@ -60,7 +60,7 @@ const QuestionContent: React.FC<Props> = (props) => {
                 fontFamily: 'Roboto',
               }}
             >
-              {JSON.parse(question?.judgeConfig)[item.key]} {item.children.split(' ')[1]}
+              {question?.judgeConfig[item.key]} {item.children.split(' ')[1]}
             </Tag>
           ), // 使用 item.key 获取后端数据中的对应值
         };
@@ -72,7 +72,7 @@ const QuestionContent: React.FC<Props> = (props) => {
   return (
     <>
       <div style={{ padding: 4 }}>
-        <Space direction={'vertical'}>
+        <Space direction={'vertical'} style={{ width: '100%' }}>
           <Title level={3}>{question?.title}</Title>
           <Space>
             <Tooltip
@@ -89,7 +89,7 @@ const QuestionContent: React.FC<Props> = (props) => {
                 <Space size={[0, 8]} wrap>
                   {question &&
                     question.tags &&
-                    JSON.parse(question.tags).map((tag) => (
+                    question.tags.map((tag) => (
                       <Tag
                         style={{
                           borderRadius: 10,

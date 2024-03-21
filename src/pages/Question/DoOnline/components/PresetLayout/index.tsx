@@ -5,11 +5,6 @@ import { ResizeBox } from '@arco-design/web-react';
 import React, { useEffect, useRef, useState } from 'react';
 import './styles.css';
 
-interface Props {
-  question: API.QuestionVO;
-  questionLoading: boolean;
-}
-
 const useAreaControl = (key: string, minSize: string, initSize: number) => {
   const [size, setSizeState] = useState<number | string>(initSize);
   const sizeRef = useRef<number | string>(initSize);
@@ -69,9 +64,7 @@ const useAreaControl = (key: string, minSize: string, initSize: number) => {
   return { size, updateAreaSize, updateFullScreen, updateFolded, fullScreen, folded, sizeRef };
 };
 
-const PresetLayout: React.FC<Props> = (props) => {
-  const { question, questionLoading } = props;
-
+const PresetLayout: React.FC = () => {
   const leftMinSize = '54px';
   const leftInitSize = 0.504;
   const leftAreaControl = useAreaControl('left', leftMinSize, leftInitSize);
@@ -101,8 +94,6 @@ const PresetLayout: React.FC<Props> = (props) => {
   if (leftAreaControl.fullScreen) {
     return (
       <QuestionView
-        data={question}
-        loading={questionLoading}
         updateFullScreen={leftAreaControl.updateFullScreen}
         fullScreen={leftAreaControl.fullScreen}
       />
@@ -134,8 +125,6 @@ const PresetLayout: React.FC<Props> = (props) => {
         {
           content: (
             <QuestionView
-              data={question}
-              loading={questionLoading}
               updateFullScreen={leftAreaControl.updateFullScreen}
               updateFolded={leftAreaControl.updateFolded}
               folded={leftAreaControl.folded}

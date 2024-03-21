@@ -1,8 +1,10 @@
+import CodeEditor from '@/components/CodeEditor';
+import ToolBar from '@/pages/Question/DoOnline/components/CodeView/components/ToolBar';
 import { ProCard } from '@ant-design/pro-components';
 import { Tabs } from '@arco-design/web-react';
 import TabPane from '@arco-design/web-react/es/Tabs/tab-pane';
 import { IconDown, IconExpand, IconShrink, IconUp } from '@arco-design/web-react/icon';
-import { Button, Space, Tooltip } from 'antd';
+import { Button, Row, Space, Tooltip } from 'antd';
 import React from 'react';
 import '../styles.css';
 
@@ -35,12 +37,19 @@ const CodeView: React.FC<Props> = (props) => {
       >
         <ProCard
           title={
-            <Tabs style={{ borderRadius: 5 }} type={'capsule'}>
-              <TabPane key="1" title="代码" />
-              <TabPane key="2" title="代码2" />
-              <TabPane key="3" title="代码3" />
-              <TabPane key="4" title="代码4" />
-            </Tabs>
+            <>
+              <Space direction={'vertical'}>
+                <Row>
+                  <Tabs style={{ borderRadius: 5 }} type={'capsule'}>
+                    <TabPane key="1" title="代码" />
+                    <TabPane key="2" title="笔记" />
+                  </Tabs>
+                </Row>
+                <Row style={{ width: 'calc(100% - 12px)', position: 'absolute', top: 40 }}>
+                  <ToolBar />
+                </Row>
+              </Space>
+            </>
           }
           extra={
             !fullScreen ? (
@@ -71,7 +80,7 @@ const CodeView: React.FC<Props> = (props) => {
           bodyStyle={{ padding: 4, overflowY: 'auto' }}
           bordered={true}
         >
-          代码
+          <CodeEditor />
         </ProCard>
       </div>
     </>
