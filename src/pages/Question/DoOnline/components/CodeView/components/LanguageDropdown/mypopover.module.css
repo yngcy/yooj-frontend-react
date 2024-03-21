@@ -1,0 +1,11 @@
+.iconSpan1 {
+    transition: transform 0.3s ease;
+}
+
+.iconSpan1:hover {
+    transform: rotate(-90deg);
+}
+
+.iconSpan1:clicked {
+    transform: rotate(90deg);
+}
