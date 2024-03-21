@@ -3,12 +3,10 @@
 // API 更新时间：
 // API 唯一标识：
 import * as basicErrorController from './basicErrorController';
-import * as systemConfigController from './systemConfigController';
-import * as judgeInnerController from './judgeInnerController';
 import * as judgeController from './judgeController';
+import * as systemConfigController from './systemConfigController';
 export default {
   basicErrorController,
   systemConfigController,
-  judgeInnerController,
   judgeController,
 };
